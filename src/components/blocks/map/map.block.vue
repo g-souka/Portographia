@@ -1,10 +1,9 @@
 <template lang="pug">
 
-//- map configuration
 gmap-map(
-	:center="{lat:41.15524, lng:-8.61281}",
+	:center="initCoordinates",
 	:zoom="13",
-	:gestureHandling="auto",
+	:gestureHandling="'auto'",
 	map-type-id="roadmap",
 	@click="addMarkerMobile($event)"
 	@rightclick="addMarker($event)"
@@ -13,12 +12,15 @@ gmap-map(
 	gmap-marker(
 		:key="marker.title",
 		v-for="(marker, id) in markers",
-		:position="marker.coords",
+		:position="marker.coordinates",
 		@click="toggleInfoWindow(id)",
-		:content="marker.content")
+		:content="marker.memory")
 
-		gmap-info-window(:position="marker.coords", :opened="openedInfoWindowId === id")
-			div(v-once, v-html="marker.content")
+		gmap-info-window(:position="marker.coordinates", :opened="openedInfoWindowId === id")
+			h1(v-once, v-html="marker.name")
+			p(v-once, v-html="marker.memory")
+
+//- pre {{markers}}
 
 </template>
 

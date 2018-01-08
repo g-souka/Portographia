@@ -1,37 +1,18 @@
 import axios from "axios";
 
-const developmentUrl = "http://localhost:4000/pt/content_pages/";
-const productionUrl = "http://api.osscm.diogoterremoto.xyz/pt/content_pages/";
 
-export const API = axios.create({
-	baseURL: process.env.NODE_ENV === "development" ? developmentUrl : productionUrl,
-	method: "post",
+export const fusionTablesApi = axios.create({
+	baseURL: "https://www.googleapis.com/fusiontables/v2/query",
 	headers: {"Content-Type": "application/json"}
 })
 
 /**
- * Gets a entry.
+ * Gets data from Google Fusion Tables API.
  */
-export const getAction = function(query)
+export const fusionTables = function(query)
 {
-	return API.post(`/get`, query);
+	const fusionTablesApiKey = "1nI0u4VCH5nlrUvDOvbxreveSXSEkrr7q-54abNJv";
+	const fusionTableId = "AIzaSyD-BxZMiYcxowux8EGw6zDNTyPYmTgKM4o";
+	
+	return fusionTablesApi.get([`?sql=SELECT ${query} FROM ${fusionTablesApiKey}&key=${fusionTableId}`,].join(""));
 }
-
-/**
- * Gets a list (of entries).
- */
-export const listAction = function(query, contentPageType)
-{
-	return API.post(contentPageType ? `/${contentPageType}` : "/list_front", query);
-}
-
-/**
- * Gets an entry or list.
- */
-export const customAction = function(action)
-{
-	return API.post(`/${action}`);
-}
-
-
-
