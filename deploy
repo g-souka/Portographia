@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Configuration
+user=user
+group=group
+domain=domain
+stagingPath=/staging/path
+productionPath=/production/path
+
+if [[ -z $1 ]]
+    then
+        echo "Deploying staging version…"
+        rsync -az --force --delete --progress --exclude-from=.deploy_exclude -og --chown=$user:$group -e "ssh -p22" ./ $user@$domain:$stagingPath
+elif [ $1 == "production" ]
+    then
+        echo "Deploying production version…"
+        rsync -az --force --delete --progress --exclude-from=.deploy_exclude -og --chown=$user:$group -e "ssh -p22" ./ $user@$domain:$productionPath
+else
+    echo $ERRORSTRING;
+fi
+

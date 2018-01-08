@@ -1,0 +1,51 @@
+::selection
+	background-color: rgb($color-primary)
+	color: white
+
+html
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	text-rendering: geometricPrecision
+	-webkit-font-feature-settings: "kern" 1
+	@include fluid-type($screen-min, $screen-md, 12px, 18px)
+
+body, body > div
+	background-color: white
+	overflow-x: hidden
+	min-width: 320px
+	display: flex
+	flex-direction: column
+	min-height: 100vh
+	justify-content: space-between
+	background-color: rgba(0,0,0,0)
+	@extend .type--body
+
+	& > div >*:not(script)
+		flex-direction: column
+		// height: 100%
+		width: 100%
+		display: block
+
+a
+	cursor: pointer
+	touch-action: manipulation
+	color: rgb($color-secondary)
+	text-decoration: none
+
+	&:hover
+		text-decoration: underline
+		color: rgb($color-primary)
+
+hr
+	border: 0
+	height: 1px !important
+	opacity: 0.5
+	margin: 0
+
+button
+	touch-action: manipulation
+	user-select: none
+
+a
+	object
+		pointer-events: none

@@ -1,0 +1,104 @@
+/**
+ * Output fluid type with specified parameters
+ */
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size)
+	$u1: unit($min-vw)
+	$u2: unit($max-vw)
+	$u3: unit($min-font-size)
+	$u4: unit($max-font-size)
+
+	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4
+		&
+			font-size: $min-font-size
+
+			@media screen and (min-width: $min-vw)
+				font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}))
+
+			@media screen and (min-width: $max-vw)
+				font-size: $max-font-size
+
+
+
+/** 
+ * Output fluid number values with specified parameters
+ */
+@mixin fluid-size($properties, $min-vw, $max-vw, $min-value, $max-value)
+
+	// Check if $max-value & $min-value are in rem units
+	@if (ends-with(#{$min-value}, rem) == true)
+		$min-value: convertRemToPx($min-value)
+	@if (ends-with(#{$max-value}, rem) == true)
+		$max-value: convertRemToPx($max-value)
+
+	// Set $min-value
+	@each $property in $properties
+		#{$property}: $min-value
+
+	// Set calculate value between $min-value and $max-value
+	@media screen and (min-width: $min-vw)
+		@each $property in $properties
+			#{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+
+	// Set $max-value
+	@media screen and (min-width: $max-vw)
+		@each $property in $properties
+			#{$property}: $max-value
+
+
+
+/** 
+ * Remove unit from value provided
+ */
+@function strip-unit($value)
+	@return $value / ($value * 0 + 1)
+
+
+
+/**
+ * Check if value ends with specified string
+ */
+@function ends-with($string, $find)
+	@if (str-slice($string, (str-length($string) - str-length($find) + 1)) == $find)
+		@return true
+	@else
+		@return false
+
+
+
+/**
+ * Convert rem's to px's
+ */
+@function convertRemToPx($remValue)
+	@return strip-unit($remValue) * 16px
+
+
+
+/**
+ * Convert px's to rem's
+ */
+@function convertPxToRem($pxValue)
+	@return (strip-unit($pxValue)/16)+rem
+
+
+
+/** 
+ * Escape SASS parsing by quoting the value and unquote after parse
+ */
+@function esc($str)
+	@return unquote($str)
+
+
+
+/**
+ * Disable SASS RGB functions
+ */
+@function rgba($args...)
+	@return unquote("rgba(#{$args})")
+
+@function rgb($args...)
+	@return unquote("rgb(#{$args})")
+
+
+
+
+
