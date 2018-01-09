@@ -17,11 +17,18 @@ gmap-map(
 		:content="marker.memory")
 
 		gmap-info-window(:position="marker.coordinates", :opened="openedInfoWindowId === id")
-			h1(v-once, v-html="marker.name")
-			p(v-once, v-html="marker.memory")
-
+			.info-window
+				h1.marker-title(v-once, v-html="marker.title")
+				p.marker-date(v-once, v-html="marker.date")
+				p.marker-image(v-once, v-html="marker.image")
+				p.marker-memory(v-once, v-html="marker.memory")
+				.contact
+					p.marker-name(v-once, v-html="marker.name")
+					p.marker-email(v-once, v-html="marker.email")
+				
 //- pre {{markers}}
 
 </template>
 
 <script src="./map.block.js"></script>
+<style src="./map.block.sass" lang="sass"></style>

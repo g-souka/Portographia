@@ -28,16 +28,11 @@ const processData = function(data)
 		{
 			let fieldName = columns[j].replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {return index == 0 ? letter.toLowerCase() : letter.toUpperCase();}).replace(/\s+/g, ''); // Camelize string.
 			let fieldValue;
-			let auxDate;
 			
 			if (fieldName === "coordinates")
 				fieldValue = {"lat": Number(values[j].split(",")[0]), "lng": Number(values[j].split(",")[1])}
-			else if (fieldName === "timestamp" || fieldName === "date"){
-				auxDate = new Date(values[j]);
-				fieldValue = auxDate.getFullYear() + '/'
-				+ ('0' + (auxDate.getMonth()+1)).slice(-2) + '/'
-				+ ('0' + auxDate.getDate()).slice(-2);
-			}
+			else if (fieldName === "timestamp" || fieldName === "date")
+				fieldValue = new Date(values[j]);
 			else
 				fieldValue = values[j];
 
