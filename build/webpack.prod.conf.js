@@ -95,10 +95,10 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       },
 	  // Netlify redirects file
-	  {
-        from: path.resolve(__dirname, '../_redirects'),
-        to: config.build.assetsRoot,
-	  }
+	  // {
+    //     from: path.resolve(__dirname, '../_redirects'),
+    //     to: config.build.assetsRoot,
+	  // }
     ])
   ]
 })
