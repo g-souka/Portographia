@@ -3,21 +3,39 @@
 .info-window
     font-family: 'Roboto', sans-serif
     font-size: 11pt
+    max-width: 500px
+    padding-right: 0.6rem
     overflow-x: hidden
 
+    
 h1.marker-title
     color: rgba(0,23,107,1)
     font-size: 18pt
+    margin-left: 0.04rem
 
-p.marker-date
+.data
     background: rgba(0,23,107,1)
     color: rgba(255,255,255,1)
-    padding: 4px
+    padding-left: 2px
+    padding-right: 2px
 
-p.marker-image
+p.marker-date
+    display: inline-block
+    padding-right: 1rem
+    margin-left: 1rem
+
+p.marker-type
+    display: inline-block
+    text-transform: uppercase
+
+img.marker-image
+    object-fit: contain
+    width: 100%
 
 p.marker-memory
-
+    object-fit: contain
+    font-family: 'Roboto', sans-serif
+    
 .contact
     border-top-style: solid
     border-top-color: rgba(0,23,107,1)
@@ -25,7 +43,8 @@ p.marker-memory
 
 p.marker-name
     display: inline-block
-    padding-right: 5%
+    padding-right: 1rem
+    margin-left: 1rem
 
 p.marker-email
     display: inline-block

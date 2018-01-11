@@ -19,8 +19,10 @@ gmap-map(
 		gmap-info-window(:position="marker.coordinates", :opened="openedInfoWindowId === id")
 			.info-window
 				h1.marker-title(v-once, v-html="marker.title")
-				p.marker-date(v-once, v-html="marker.date")
-				p.marker-image(v-once, v-html="marker.image")
+				.data
+					p.marker-date(v-once, v-html="marker.date")
+					p.marker-type(v-once, v-html="marker.type")
+				img.marker-image(:src="marker.image")
 				p.marker-memory(v-once, v-html="marker.memory")
 				.contact
 					p.marker-name(v-once, v-html="marker.name")
