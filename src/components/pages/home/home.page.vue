@@ -23,6 +23,9 @@ div
 					| {{ description3 }}
 					br
 					br
+					| {{ description4 }}
+					br
+					br
 
 			.link-map
 				button.button(@click="closeOverlay()") Navegar Memórias
