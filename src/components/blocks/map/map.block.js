@@ -38,6 +38,6 @@ export default {
 		},
 		addMarkerMobile(event){ 
 			mousedUp = true;
-		},
+		}
 	}
 }
