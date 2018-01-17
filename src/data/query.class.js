@@ -34,5 +34,4 @@ export class Query
 	{
 		this.content_page_type_relations.push(queryObjRelation);
 	}
-	
 }

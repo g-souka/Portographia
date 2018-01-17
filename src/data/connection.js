@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const fusionTablesApi = axios.create({
 	baseURL: "https://www.googleapis.com/fusiontables/v2/query",
 	headers: {"Content-Type": "application/json"}
